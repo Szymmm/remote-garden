@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MyPathService } from './my-path.service';
 
 @Component({
   selector: 'path-list',
@@ -22,30 +23,11 @@ import { Component, OnInit } from '@angular/core';
   ],
 })
 export class PathListComponent implements OnInit {
-  elements = [
-    {
-      name: 'sałata',
-      image: 'http://placehold.it/150x150/008000',
-    },
-    {
-      name: 'pomidor',
-      image: 'http://placehold.it/150x150/FF0000',
-    },
-    {
-      name: 'fasolka',
-      image: 'http://placehold.it/150x150/FFFFFF',
-    },
-    {
-      name: 'pusto',
-      image: 'http://placehold.it/150x150',
-    },
-    {
-      name: 'pusto',
-      image: 'http://placehold.it/150x150',
-    },
-  ];
+  elements = [];
 
-  constructor() {}
+  constructor(private myPath: MyPathService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.elements = this.myPath.getElements();
+  }
 }
